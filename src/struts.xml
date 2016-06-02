@@ -6,12 +6,8 @@
 
 <struts>
     <constant name="struts.devMode" value="true" />
-    <package name="helloworld" extends="struts-default">
+    <include file="routing.xml" />
+    <package name="in" extends="struts-default">
 
-        <action name="hello"
-                class="com.credit.actions.HelloWorldAction"
-                method="execute">
-            <result name="success">/WEB-INF/helloworld.jsp</result>
-        </action>
     </package>
 </struts>
