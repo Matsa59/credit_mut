@@ -1,18 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-  <title>Hello World</title>
-</head>
-<body>
-<h1>Hello World From Struts2</h1>
-<form action="hello">
-  <label for="name">Please enter your name</label><br/>
-  <input type="text" name="name"/>
-  <input type="submit" value="Say Hello"/>
-</form>
-</body>
-</html>
+<%@include file="header.jsp"%>
+
+<section class="homepage-header">
+    <div class="image-filter">
+        <div class="first-element">
+            <div class="container">
+                <div class="col-xs-12">
+                    <h1>Bienvenue sur le site de paris CreditMut</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 first-element">
+            PARI
+        </div>
+    </div>
+</section>
+<%@include file="footer.jsp"%>

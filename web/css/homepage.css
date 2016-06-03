@@ -1,0 +1,16 @@
+.homepage-header
+{
+    background-image: url(../images/homepage.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.homepage-header .image-filter {
+    background-attachment: fixed;
+}
+
+.last-bets {
+    background-color: rgb(38, 38, 38);
+    color: white;
+}
