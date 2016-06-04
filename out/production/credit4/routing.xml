@@ -37,6 +37,23 @@
     </package>
 
 
+    <package name="tournament" extends="struts-default">
+        <action name="index-tournament"
+                class="com.credit.actions.tournaments.IndexTournamentAction"
+                method="execute">
+            <result name="success">/WEB-INF/tournament/index.jsp</result>
+        </action>
+
+        <action name="create-tournament"
+                class="com.credit.actions.tournaments.CreateTournamentAction"
+                method="execute">
+            <result name="error" type="redirectAction">sign-in</result>
+            <result name="success" type="redirectAction">index-tournament</result>
+            <result name="input">/WEB-INF/tournament/new.jsp</result>
+        </action>
+    </package>
+
+
 
     <package name="user" extends="struts-default">
         <action name="sign-up"

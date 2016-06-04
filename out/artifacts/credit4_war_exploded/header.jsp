@@ -40,6 +40,14 @@
                             <li><a href="<s:url action="create-party"/>">Create a new party</a></li>
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tournament <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<s:url action="index-tournament"/>">View all tournaments</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="<s:url action="create-tournament"/>">Create a new tournament</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 <form class="navbar-form navbar-left" role="search">
                     <div class="form-group">
