@@ -28,6 +28,10 @@ public class LoginUserAction extends ActionSupport {
             return SUCCESS;
         }
 
+        if (this.userEntity == null) {
+            return INPUT;
+        }
+
         if (this.userEntity.getUsername() == null || this.userEntity.getPassword() == null) {
             return INPUT;
         }
@@ -54,7 +58,7 @@ public class LoginUserAction extends ActionSupport {
             return INPUT;
         }
 
-        session.put("user_session", userEntity.getId());
+        session.put("user_session", userEntity);
 
         return SUCCESS;
     }

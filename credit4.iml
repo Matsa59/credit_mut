@@ -47,5 +47,6 @@
     <orderEntry type="library" name="org.hibernate:hibernate-entitymanager:4.3.11.Final" level="project" />
     <orderEntry type="library" name="javax.ejb:javax.ejb-api:3.2" level="project" />
     <orderEntry type="library" name="org.apache.struts:struts2-convention-plugin:2.5" level="project" />
+    <orderEntry type="library" name="jstl-1.2" level="project" />
   </component>
 </module>
