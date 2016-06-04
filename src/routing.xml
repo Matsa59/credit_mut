@@ -13,6 +13,31 @@
 
 
 
+    <package name="party" extends="struts-default">
+        <action name="index-party"
+                class="com.credit.actions.party.IndexPartyAction"
+                method="execute">
+            <result name="success">/WEB-INF/party/index.jsp</result>
+        </action>
+
+        <action name="my-parties"
+                class="com.credit.actions.party.IndexPartyAction"
+                method="myPartiesExecute">
+            <result name="success">/WEB-INF/party/index.jsp</result>
+            <result name="error" type="redirectAction">sign-in</result>
+        </action>
+
+        <action name="create-party"
+                class="com.credit.actions.party.CreatePartyAction"
+                method="execute">
+            <result name="success" type="redirectAction">index-party</result>
+            <result name="input">/WEB-INF/party/new.jsp</result>
+            <result name="error" type="redirectAction">sign-in</result>
+        </action>
+    </package>
+
+
+
     <package name="user" extends="struts-default">
         <action name="sign-up"
                 class="com.credit.actions.user.RegisterUserAction"

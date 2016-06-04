@@ -1,0 +1,17 @@
+.party {
+    color: white;
+    background-color: #292929;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    border-color: #363636;
+}
+
+.party h3, .party p {
+    padding: 20px;
+    margin: 0;
+}
+
+.party hr {
+    margin: 0;
+    padding: 0;
+}
