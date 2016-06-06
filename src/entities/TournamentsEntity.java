@@ -91,7 +91,7 @@ public class TournamentsEntity {
         return result;
     }
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "tournamentsEntity")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "tournamentsEntity", cascade = CascadeType.ALL)
     public Collection<PartiesEntity> getPartiesEntity() {
         return partiesEntity;
     }

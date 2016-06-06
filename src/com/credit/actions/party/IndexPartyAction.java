@@ -1,6 +1,7 @@
 package com.credit.actions.party;
 
 import com.credit.managers.EMF;
+import com.credit.managers.SessionManager;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import entities.PartiesEntity;
@@ -31,14 +32,13 @@ public class IndexPartyAction extends ActionSupport {
 
     public String myPartiesExecute()
     {
-        Map session = ActionContext.getContext().getSession();
-        UsersEntity user = (UsersEntity) session.get("user_session");
+        em = EMF.createEntityManager();
+        UsersEntity user = SessionManager.getUser(em);
 
         if (user == null) {
+            em.close();
             return ERROR;
         }
-
-        em = EMF.createEntityManager();
 
         parties = em.createQuery(
                 "SELECT p FROM PartiesEntity p WHERE isPublic = 1 AND p.usersEntity = :user AND tournamentsEntity = null order by id desc"

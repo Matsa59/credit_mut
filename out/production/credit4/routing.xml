@@ -14,6 +14,15 @@
 
 
     <package name="party" extends="struts-default">
+        <action name="define-response"
+                class="com.credit.actions.party.ShowPartyAction"
+                method="execute">
+            <result name="login" type="redirectAction">sign-in</result>
+            <result name="error" type="redirectAction">index-party</result>
+            <result name="success" type="redirectAction">index-party</result>
+            <result name="input">/WEB-INF/party/show.jsp</result>
+        </action>
+
         <action name="index-party"
                 class="com.credit.actions.party.IndexPartyAction"
                 method="execute">

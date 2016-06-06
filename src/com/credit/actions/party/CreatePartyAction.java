@@ -1,6 +1,7 @@
 package com.credit.actions.party;
 
 import com.credit.managers.EMF;
+import com.credit.managers.SessionManager;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import entities.*;
@@ -27,13 +28,12 @@ public class CreatePartyAction extends ActionSupport {
     public String execute()
     {
         em = EMF.createEntityManager();
-        Map session = ActionContext.getContext().getSession();
+        UsersEntity user = SessionManager.getUser(em);
 
-        if (session.get("user_session") == null) {
+        if (user == null) {
+            em.close();
             return ERROR;
         }
-
-        user = (UsersEntity)session.get("user_session");
 
         if (this.party == null) {
             tournaments = user.getTournamentsEntity();
@@ -52,10 +52,8 @@ public class CreatePartyAction extends ActionSupport {
 
         party.setUsersEntity(user);
         party.setTournamentsEntity(tournament);
-        //party.setChoicesPartiesEntity(null);
 
         em.getTransaction().begin();
-
         em.persist(party);
         em.flush();
         em.getTransaction().commit();
@@ -64,6 +62,7 @@ public class CreatePartyAction extends ActionSupport {
 
         for(ChoicesPartiesEntity choice : choices) {
             choice.setPartiesEntity(party);
+            choice.setIsResponse(false);
             em.persist(choice);
         }
 

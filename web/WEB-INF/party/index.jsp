@@ -13,7 +13,14 @@
                     <hr>
                     <p><s:property value="name"/></p>
 
-                    <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#party-<s:property value="id"/>">Bet</button></p>
+
+
+                    <p>
+                        <a href="<s:url action="define-response"/>?partyId=<s:property value="id"/>">
+                        Show more
+                        </a>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#party-<s:property value="id"/>">Bet</button>
+                    </p>
                 </div>
             </div>
 

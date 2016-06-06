@@ -1,6 +1,7 @@
 package com.credit.actions.tournaments;
 
 import com.credit.managers.EMF;
+import com.credit.managers.SessionManager;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import entities.GroupsEntity;
@@ -22,10 +23,9 @@ public class IndexTournamentAction extends ActionSupport {
     private List groupsTournaments;
 
     public String execute() {
-        Map session = ActionContext.getContext().getSession();
-        UsersEntity user = (UsersEntity)session.get("user_session");
-
         em = EMF.createEntityManager();
+        UsersEntity user = SessionManager.getUser(em);
+
         tournaments = em.createQuery("select t from TournamentsEntity t where isPublic = 1 order by id desc").getResultList();
         em.close();
 
@@ -47,14 +47,14 @@ public class IndexTournamentAction extends ActionSupport {
     }
 
     public String myTournamentsExecute() {
-        Map session = ActionContext.getContext().getSession();
-        UsersEntity user = (UsersEntity)session.get("user_session");
+        em = EMF.createEntityManager();
+        UsersEntity user = SessionManager.getUser(em);
 
         if (user == null) {
+            em.close();
             return ERROR;
         }
 
-        em = EMF.createEntityManager();
         tournaments = em.createQuery(
                 "select t from TournamentsEntity t where usersEntity = :user AND isPublic = 1")
                 .setParameter("user", user)

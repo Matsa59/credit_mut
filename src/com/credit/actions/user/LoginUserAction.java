@@ -58,7 +58,7 @@ public class LoginUserAction extends ActionSupport {
             return INPUT;
         }
 
-        session.put("user_session", userEntity);
+        session.put("user_session", userEntity.getId());
 
         return SUCCESS;
     }

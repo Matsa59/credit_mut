@@ -112,7 +112,7 @@ public class UsersEntity {
 
     private Collection<TournamentsEntity> tournamentsEntity;
 
-    @OneToMany(mappedBy = "usersEntity")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "usersEntity")
     public Collection<TournamentsEntity> getTournamentsEntity() {
         return tournamentsEntity;
     }
@@ -123,7 +123,7 @@ public class UsersEntity {
 
     private Collection<GroupsEntity> groupsEntitiesOwn;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "owner")
     public Collection<GroupsEntity> getGroupsEntitiesOwn() {
         return groupsEntitiesOwn;
     }
@@ -141,7 +141,7 @@ public class UsersEntity {
         this.partiesEntity = partiesEntity;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "usersEntities")
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "usersEntities")
     public Collection<GroupsEntity> getGroupsEntities() {
         return groupsEntities;
     }

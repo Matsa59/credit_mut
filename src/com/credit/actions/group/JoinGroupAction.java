@@ -1,6 +1,7 @@
 package com.credit.actions.group;
 
 import com.credit.managers.EMF;
+import com.credit.managers.SessionManager;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import entities.GroupsEntity;
@@ -17,14 +18,13 @@ public class JoinGroupAction extends ActionSupport {
     private int groupId;
 
     public String execute() {
-        Map session = ActionContext.getContext().getSession();
-        UsersEntity user = (UsersEntity)session.get("user_session");
+        EntityManager em = EMF.createEntityManager();
+        UsersEntity user = SessionManager.getUser(em);
 
         if (user == null) {
+            em.close();
             return LOGIN;
         }
-
-        EntityManager em = EMF.createEntityManager();
 
         try {
             GroupsEntity group = (GroupsEntity)em.createQuery("select g from GroupsEntity g where id = :id")
@@ -37,10 +37,9 @@ public class JoinGroupAction extends ActionSupport {
             }
 
             group.getUsersEntities().add(user);
-            user.getGroupsEntities().add(group);
 
             em.getTransaction().begin();
-            em.merge(group);
+            em.persist(group);
             em.flush();
             em.getTransaction().commit();
             em.close();

@@ -1,6 +1,7 @@
 package com.credit.actions.tournaments;
 
 import com.credit.managers.EMF;
+import com.credit.managers.SessionManager;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import entities.GroupsEntity;
@@ -25,38 +26,35 @@ public class CreateTournamentAction extends ActionSupport {
 
     public String execute()
     {
-        Map session = ActionContext.getContext().getSession();
-        user = (UsersEntity)session.get("user_session");
+        em = EMF.createEntityManager();
+        UsersEntity user = SessionManager.getUser(em);
 
         if (user == null) {
+            em.close();
             return ERROR;
         }
 
         if (tournament == null) {
+            em.close();
             return INPUT;
         }
 
         if (finalGroups.size() < 1) {
+            em.close();
             return INPUT;
         }
 
         tournament.setUsersEntity(user);
 
-        em = EMF.createEntityManager();
         em.getTransaction().begin();
-        tournament = em.merge(tournament);
-        em.flush();
-        em.getTransaction().commit();
+        em.persist(tournament);
 
-        user.getTournamentsEntity().add(tournament);
-
-        em.getTransaction().begin();
         for (int i = 0; i < finalGroups.size(); i++) {
             for (GroupsEntity entity : user.getGroupsEntities()) {
                 if (((ArrayList<GroupsEntity>)finalGroups).get(i).getId() == entity.getId()) {
                     ((ArrayList<GroupsEntity>)finalGroups).set(i, entity);
                     entity.getTournamentsEntities().add(tournament);
-                    em.merge(entity);
+                    em.persist(entity);
                     break;
                 }
             }

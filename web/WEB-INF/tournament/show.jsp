@@ -35,7 +35,12 @@
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
                     <div class="party">
                         <p><s:property value="name"/></p>
-                        <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#party-<s:property value="id"/>">Bet</button></p>
+                        <p>
+                            <a href="<s:url action="define-response"/>?partyId=<s:property value="id"/>">
+                                Show more
+                            </a>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#party-<s:property value="id"/>">Bet</button>
+                        </p>
                     </div>
                 </div>
 

@@ -1,6 +1,7 @@
 package com.credit.actions.tournaments;
 
 import com.credit.managers.EMF;
+import com.credit.managers.SessionManager;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import entities.TournamentsEntity;
@@ -31,10 +32,8 @@ public class ShowTournamentAction extends ActionSupport {
             return ERROR;
         }
 
+        user = SessionManager.getUser(em);
         em.close();
-
-        Map session = ActionContext.getContext().getSession();
-        user = (UsersEntity)session.get("user_session");
 
         return SUCCESS;
     }

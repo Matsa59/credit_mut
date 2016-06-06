@@ -1,6 +1,7 @@
 package com.credit.actions.group;
 
 import com.credit.managers.EMF;
+import com.credit.managers.SessionManager;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import entities.GroupsEntity;
@@ -20,16 +21,16 @@ public class IndexGroupAction extends ActionSupport {
     private GroupsEntity currentGroup;
     private int groupId = -1;
     private UsersEntity user;
+    private EntityManager em;
 
     public IndexGroupAction()
     {
-        Map session = ActionContext.getContext().getSession();
-        user = (UsersEntity)session.get("user_session");
+        em = EMF.createEntityManager();
+        user = SessionManager.getUser(em);
     }
 
     public String execute()
     {
-        EntityManager em = EMF.createEntityManager();
         groups = (Collection<GroupsEntity>) em.createQuery(
                 "select g from GroupsEntity g where isPublic = 1 order by id"
         ).getResultList();
@@ -42,12 +43,12 @@ public class IndexGroupAction extends ActionSupport {
             }
         }
 
+        em.close();
+
         return SUCCESS;
     }
 
     public String myGroupsExecute() {
-        Map session = ActionContext.getContext().getSession();
-        UsersEntity user = (UsersEntity)session.get("user_session");
 
         if (user == null) {
             return LOGIN;

@@ -86,7 +86,7 @@ public class GroupsEntity {
         this.partiesEntities = partiesEntities;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "group_tournament", joinColumns = @JoinColumn(name = "group_id"), inverseJoinColumns = @JoinColumn(name = "tournament_id"))
     public Collection<TournamentsEntity> getTournamentsEntities() {
         return tournamentsEntities;

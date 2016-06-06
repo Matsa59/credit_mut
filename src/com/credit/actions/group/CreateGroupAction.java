@@ -1,6 +1,7 @@
 package com.credit.actions.group;
 
 import com.credit.managers.EMF;
+import com.credit.managers.SessionManager;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import entities.GroupsEntity;
@@ -22,29 +23,26 @@ public class CreateGroupAction extends ActionSupport {
 
     public String execute()
     {
-        Map session = ActionContext.getContext().getSession();
-        UsersEntity user = (UsersEntity)session.get("user_session");
+        em = EMF.createEntityManager();
+        UsersEntity user = SessionManager.getUser(em);
 
         if (user == null) {
+            em.close();
             return ERROR;
         }
 
         if (group == null) {
+            em.close();
             return INPUT;
         }
 
-        em = EMF.createEntityManager();
         em.getTransaction().begin();
 
         group.setOwner(user);
         group.getUsersEntities().add(user);
-        group = em.merge(group);
+        em.persist(group);
         em.flush();
-
         em.getTransaction().commit();
-
-        user.getGroupsEntitiesOwn().add(group);
-        user.getGroupsEntities().add(group);
 
         em.close();
 

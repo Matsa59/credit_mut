@@ -12,6 +12,7 @@ public class ChoicesPartiesEntity {
     private int id;
     private String name;
     private Collection<UsersEntity> usersEntities;
+    private boolean isResponse;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -74,5 +75,15 @@ public class ChoicesPartiesEntity {
 
     public void setUsersEntities(Collection<UsersEntity> usersEntities) {
         this.usersEntities = usersEntities;
+    }
+
+    @Basic
+    @Column(name = "is_response", nullable = false)
+    public boolean getIsResponse() {
+        return isResponse;
+    }
+
+    public void setIsResponse(boolean isResponse) {
+        this.isResponse = isResponse;
     }
 }
