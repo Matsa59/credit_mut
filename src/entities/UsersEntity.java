@@ -1,7 +1,9 @@
 package entities;
 
 import javax.persistence.*;
+import java.security.acl.Group;
 import java.util.Collection;
+import java.util.LinkedList;
 
 /**
  * Created by Alexandre on 09/05/2016.
@@ -17,6 +19,14 @@ public class UsersEntity {
     private String lastName;
     private Collection<PartiesEntity> partiesEntity;
     private Collection<GroupsEntity> groupsEntities;
+    private Collection<ChoicesPartiesEntity> choicesPartiesEntities;
+
+    public UsersEntity()
+    {
+        partiesEntity = new LinkedList<>();
+        groupsEntities = new LinkedList<>();
+        choicesPartiesEntities = new LinkedList<>();
+    }
 
     @Id
     @Column(name = "id", nullable = false)
@@ -111,6 +121,17 @@ public class UsersEntity {
         this.tournamentsEntity = tournamentsEntity;
     }
 
+    private Collection<GroupsEntity> groupsEntitiesOwn;
+
+    @OneToMany(mappedBy = "owner")
+    public Collection<GroupsEntity> getGroupsEntitiesOwn() {
+        return groupsEntitiesOwn;
+    }
+
+    public void setGroupsEntitiesOwn(Collection<GroupsEntity> groupsEntitiesOwn) {
+        this.groupsEntitiesOwn = groupsEntitiesOwn;
+    }
+
     @OneToMany(mappedBy = "usersEntity")
     public Collection<PartiesEntity> getPartiesEntity() {
         return partiesEntity;
@@ -127,5 +148,14 @@ public class UsersEntity {
 
     public void setGroupsEntities(Collection<GroupsEntity> groupsEntities) {
         this.groupsEntities = groupsEntities;
+    }
+
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "usersEntities")
+    public Collection<ChoicesPartiesEntity> getChoicesPartiesEntities() {
+        return choicesPartiesEntities;
+    }
+
+    public void setChoicesPartiesEntities(Collection<ChoicesPartiesEntity> choicesPartiesEntities) {
+        this.choicesPartiesEntities = choicesPartiesEntities;
     }
 }

@@ -34,18 +34,30 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Party <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="<s:url action="index-party"/>">View all parties</a></li>
+                            <li><a href="<s:url action="index-party"/>">View custom parties</a></li>
                             <li><a href="<s:url action="my-parties"/>">View my parties</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="<s:url action="create-party"/>">Create a new party</a></li>
                         </ul>
                     </li>
+
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tournament <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="<s:url action="index-tournament"/>">View all tournaments</a></li>
+                            <li><a href="<s:url action="my-tournaments"/>">View my tournaments</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="<s:url action="create-tournament"/>">Create a new tournament</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Group <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<s:url action="index-group"/>">View public groups</a></li>
+                            <li><a href="<s:url action="my-groups"/>">View my groups</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="<s:url action="create-group"/>">Create a new group</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -81,3 +93,5 @@
         </div><!-- /.container-fluid -->
     </div>
 </nav>
+
+<div class="first-element"></div>

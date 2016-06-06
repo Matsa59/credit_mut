@@ -1,24 +1,38 @@
 <%@ include file="../../header.jsp" %>
 
 <section>
-    <div class="first-element"></div>
+    <div class="container">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xs-offset-0 col-sm-offset-3 col-md-offset-4 col-lg-offset-4">
+        <s:form action="create-party" method="POST">
+            <input type="text" name="party.name" class="field" placeholder="Name...">
 
-    <s:form action="create-party" method="POST">
-        <input type="checkbox" name="party.isPublic" value="1"><label>Public access </label>
-        <input type="text" name="party.name">
+            <div class="field">
+                <input type="checkbox" name="party.isPublic" value="1">
+                <label style="color: white;">Public access </label><br />
+            </div>
 
-        <select name="tournamentId">
-            <option value="-1">None</option>
-            <s:iterator value="tournaments">
-                <option value="<s:property value="id"/>" selected><s:property value="name"/></option>
-            </s:iterator>
-        </select>
+            <div class="field">
+                <label>tournament : </label>
+                <select name="tournamentId">
+                    <option value="-1">None</option>
+                    <s:iterator value="tournaments">
+                        <option value="<s:property value="id"/>" selected><s:property value="name"/></option>
+                    </s:iterator>
+                </select>
+            </div>
 
-        <input type="text" name="choice" placeholder="Choice 1">
-        <input type="text" name="choice" placeholder="Choice 2">
+            <div class="choices">
+                <input type="text" name="choice" placeholder="Choice 1" class="field">
+                <input type="text" name="choice" placeholder="Choice 2" class="field">
+            </div>
 
-        <input type="submit" value="Save new party">
-    </s:form>
+            <button type="button" class="field" onclick="addChoice(); return false;">Add choice</button>
+
+            <input type="submit" value="Save new party" class="field submit">
+        </s:form>
+        </div>
+    </div>
 </section>
+
 
 <%@ include file="../../footer.jsp" %>

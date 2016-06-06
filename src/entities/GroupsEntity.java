@@ -2,6 +2,7 @@ package entities;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.LinkedList;
 
 /**
  * Created by Alexandre on 09/05/2016.
@@ -15,9 +16,18 @@ public class GroupsEntity {
     private Collection<UsersEntity> usersEntities;
     private Collection<PartiesEntity> partiesEntities;
     private Collection<TournamentsEntity> tournamentsEntities;
+    private UsersEntity owner;
+
+    public GroupsEntity()
+    {
+        usersEntities = new LinkedList<>();
+        partiesEntities = new LinkedList<>();
+        tournamentsEntities = new LinkedList<>();
+    }
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return id;
     }
@@ -44,6 +54,16 @@ public class GroupsEntity {
 
     public void setIsPublic(byte isPublic) {
         this.isPublic = isPublic;
+    }
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn (name = "user_id")
+    public UsersEntity getOwner() {
+        return owner;
+    }
+
+    public void setOwner(UsersEntity owner) {
+        this.owner = owner;
     }
 
     @ManyToMany(cascade = CascadeType.ALL)

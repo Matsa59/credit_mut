@@ -36,13 +36,19 @@ public class CreateTournamentAction extends ActionSupport {
             return INPUT;
         }
 
+        if (finalGroups.size() < 1) {
+            return INPUT;
+        }
+
         tournament.setUsersEntity(user);
 
         em = EMF.createEntityManager();
         em.getTransaction().begin();
-        em.persist(tournament);
+        tournament = em.merge(tournament);
         em.flush();
         em.getTransaction().commit();
+
+        user.getTournamentsEntity().add(tournament);
 
         em.getTransaction().begin();
         for (int i = 0; i < finalGroups.size(); i++) {

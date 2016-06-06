@@ -34,6 +34,14 @@
             <result name="input">/WEB-INF/party/new.jsp</result>
             <result name="error" type="redirectAction">sign-in</result>
         </action>
+
+        <action name="bet"
+                class="com.credit.actions.party.RegisterBetAction"
+                method="execute">
+            <result name="login" type="redirectAction">sign-in</result>
+            <result name="error" type="redirectAction">home</result>
+            <result name="success" type="redirectAction">home</result>
+        </action>
     </package>
 
 
@@ -42,6 +50,21 @@
                 class="com.credit.actions.tournaments.IndexTournamentAction"
                 method="execute">
             <result name="success">/WEB-INF/tournament/index.jsp</result>
+        </action>
+
+        <action name="my-tournaments"
+                class="com.credit.actions.tournaments.IndexTournamentAction"
+                method="myTournamentsExecute"
+                >
+            <result name="error" type="redirectAction">sign-in</result>
+            <result name="success">/WEB-INF/tournament/index.jsp</result>
+        </action>
+
+        <action name="show-tournament"
+                class="com.credit.actions.tournaments.ShowTournamentAction"
+                method="execute">
+            <result name="success">/WEB-INF/tournament/show.jsp</result>
+            <result name="error" type="redirectAction">index-tournament</result>
         </action>
 
         <action name="create-tournament"
@@ -74,6 +97,47 @@
                 class="com.credit.actions.user.LoginUserAction"
                 method="remove">
             <result name="success">/index.jsp</result>
+        </action>
+    </package>
+
+
+
+    <package name="group" extends="struts-default">
+        <action name="join-group"
+                class="com.credit.actions.group.JoinGroupAction"
+                method="execute">
+            <result name="login" type="redirectAction">sign-in</result>
+            <result name="error" type="redirectAction">home</result>
+            <result name="success" type="redirectAction">index-group</result>
+        </action>
+
+        <action name="invite-group"
+                class="com.credit.actions.group.InviteGroupAction"
+                method="execute">
+            <result name="error" type="redirectAction">index-group</result>
+            <result name="success" type="redirectAction">index-group</result>
+            <result name="login" type="redirectAction">sign-in</result>
+        </action>
+
+        <action name="create-group"
+                class="com.credit.actions.group.CreateGroupAction"
+                method="execute">
+            <result name="error" type="redirectAction">sign-in</result>
+            <result name="input">/WEB-INF/group/new.jsp</result>
+            <result name="success" type="redirectAction">my-groups</result>
+        </action>
+
+        <action name="my-groups"
+                class="com.credit.actions.group.IndexGroupAction"
+                method="myGroupsExecute">
+            <result name="login" type="redirectAction">sign-in</result>
+            <result name="success">/WEB-INF/group/my-index.jsp</result>
+        </action>
+
+        <action name="index-group"
+                class="com.credit.actions.group.IndexGroupAction"
+                method="execute">
+            <result name="success">/WEB-INF/group/index.jsp</result>
         </action>
     </package>
 </struts>

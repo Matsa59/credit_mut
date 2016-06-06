@@ -1,4 +1,16 @@
-.party {
+h2 {
+    color: white;
+}
+
+.content {
+    padding: 10px;
+}
+
+input[type=checkbox].list, input[type=radio].list, .list {
+    margin: 0 0 10px 60px;
+}
+
+.party, .tournament {
     color: white;
     background-color: #292929;
     border-radius: 5px;
@@ -6,12 +18,26 @@
     border-color: #363636;
 }
 
-.party h3, .party p {
+.party h3, .party p, .tournament h3, .tournament p{
     padding: 20px;
     margin: 0;
 }
 
-.party hr {
+.party ul {
+    padding: 20px 40px;
+}
+
+.party hr, .tournament hr {
     margin: 0;
     padding: 0;
 }
+
+.tournament {
+    height: 200px;
+    overflow: scroll;
+}
+
+.tournament-new {
+    color: white;
+}
+

@@ -1,12 +1,10 @@
 <%@include file="header.jsp"%>
 
 <section class="homepage-header">
-    <div class="image-filter">
-        <div class="first-element">
-            <div class="container">
-                <div class="col-xs-12">
-                    <h1>Bienvenue sur le site de paris CreditMut</h1>
-                </div>
+    <div class="image-filter first-element">
+        <div class="container">
+            <div class="col-xs-12">
+                <h1>Bienvenue sur le site de paris CreditMut</h1>
             </div>
         </div>
     </div>
