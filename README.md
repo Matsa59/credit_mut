@@ -23,3 +23,9 @@ Pour user :
 Pour admin :
 - Classments (trés précis (par tournoi, paris, user ...)). On doit pouvoir faire des stats
 - Gestion des utilisateurs
+
+Team :
+- Timothée Noullez : Design
+- Jérome Pogeant : java
+- Alexandre Lepretre : java
+- Mathieu Hidalgo : support
