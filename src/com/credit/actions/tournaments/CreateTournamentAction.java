@@ -27,7 +27,7 @@ public class CreateTournamentAction extends ActionSupport {
     public String execute()
     {
         em = EMF.createEntityManager();
-        UsersEntity user = SessionManager.getUser(em);
+        user = SessionManager.getUser(em);
 
         if (user == null) {
             em.close();

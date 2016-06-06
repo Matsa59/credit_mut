@@ -39,5 +39,24 @@ input[type=checkbox].list, input[type=radio].list, .list {
 
 .tournament-new {
     color: white;
+    padding-top: 0;
+    background-image: url(../images/tournament.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
+.party-new {
+    color: white;
+    padding-top: 0;
+    background-image: url(../images/party.gif);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.group-new {
+    color: white;
+    padding-top: 0;
+    background-image: url(../images/group.gif);
+    background-size: cover;
+    background-repeat: no-repeat;
+}

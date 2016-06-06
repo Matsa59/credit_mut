@@ -59,7 +59,7 @@ public class TournamentsEntity {
         this.usersEntity = usersEntity;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "tournamentsEntities")
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "tournamentsEntities")
     public Collection<GroupsEntity> getGroupsEntities() {
         return groupsEntities;
     }
