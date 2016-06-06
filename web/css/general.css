@@ -11,12 +11,17 @@ h1 {
 }
 
 section {
+    padding-top: 49px;
     height: 100vh;
     width: 100vw;
 }
 
+.clear {
+    clear: both;
+}
+
 .first-element {
-     padding-top: 100px;
+     padding-top: 51px;
 }
 
 .image-filter {
@@ -39,7 +44,7 @@ section {
     overflow: hidden;
 }
 
-.modal-content .field {
+.field {
     padding: 10px 15px;
     background-color: #252525;
     color: white;
@@ -49,7 +54,7 @@ section {
     margin: 10px 2%;
 }
 
-.modal-content .field.submit {
+.field.submit {
     background-color: #29949d;
 }
 
@@ -73,4 +78,13 @@ section {
     color: white;
     font-size: 14px;
     margin: 0 15px;
+}
+
+.choice {
+    border: 1px solid #111;
+    cursor: pointer;
+}
+
+.choice.current {
+    border-color: #00a535;
 }

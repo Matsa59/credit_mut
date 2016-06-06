@@ -100,7 +100,7 @@ public class PartiesEntity {
 
     private Collection<ChoicesPartiesEntity> choicesPartiesEntity;
 
-    @OneToMany(mappedBy = "partiesEntity")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "partiesEntity")
     public Collection<ChoicesPartiesEntity> getChoicesPartiesEntity() {
         return choicesPartiesEntity;
     }

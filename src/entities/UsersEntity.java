@@ -1,7 +1,9 @@
 package entities;
 
 import javax.persistence.*;
+import java.security.acl.Group;
 import java.util.Collection;
+import java.util.LinkedList;
 
 /**
  * Created by Alexandre on 09/05/2016.
@@ -17,6 +19,14 @@ public class UsersEntity {
     private String lastName;
     private Collection<PartiesEntity> partiesEntity;
     private Collection<GroupsEntity> groupsEntities;
+    private Collection<ChoicesPartiesEntity> choicesPartiesEntities;
+
+    public UsersEntity()
+    {
+        partiesEntity = new LinkedList<>();
+        groupsEntities = new LinkedList<>();
+        choicesPartiesEntities = new LinkedList<>();
+    }
 
     @Id
     @Column(name = "id", nullable = false)
@@ -102,13 +112,24 @@ public class UsersEntity {
 
     private Collection<TournamentsEntity> tournamentsEntity;
 
-    @OneToMany(mappedBy = "usersEntity")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "usersEntity")
     public Collection<TournamentsEntity> getTournamentsEntity() {
         return tournamentsEntity;
     }
 
     public void setTournamentsEntity(Collection<TournamentsEntity> tournamentsEntity) {
         this.tournamentsEntity = tournamentsEntity;
+    }
+
+    private Collection<GroupsEntity> groupsEntitiesOwn;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "owner")
+    public Collection<GroupsEntity> getGroupsEntitiesOwn() {
+        return groupsEntitiesOwn;
+    }
+
+    public void setGroupsEntitiesOwn(Collection<GroupsEntity> groupsEntitiesOwn) {
+        this.groupsEntitiesOwn = groupsEntitiesOwn;
     }
 
     @OneToMany(mappedBy = "usersEntity")
@@ -120,12 +141,21 @@ public class UsersEntity {
         this.partiesEntity = partiesEntity;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "usersEntities")
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "usersEntities")
     public Collection<GroupsEntity> getGroupsEntities() {
         return groupsEntities;
     }
 
     public void setGroupsEntities(Collection<GroupsEntity> groupsEntities) {
         this.groupsEntities = groupsEntities;
+    }
+
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "usersEntities")
+    public Collection<ChoicesPartiesEntity> getChoicesPartiesEntities() {
+        return choicesPartiesEntities;
+    }
+
+    public void setChoicesPartiesEntities(Collection<ChoicesPartiesEntity> choicesPartiesEntities) {
+        this.choicesPartiesEntities = choicesPartiesEntities;
     }
 }

@@ -1,7 +1,7 @@
 <%@include file="../../header.jsp" %>
 
 <section>
-    <div class="container first-element">
+    <div class="container">
         <s:property value="errorMessage" />
         <%@include file="forms/register_form.jsp"%>
     </div>

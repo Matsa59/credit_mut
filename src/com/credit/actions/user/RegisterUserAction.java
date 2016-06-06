@@ -5,6 +5,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import entities.UsersEntity;
 
 import javax.persistence.EntityManager;
+import java.util.LinkedList;
 
 /**
  * Created by Alexandre on 03/06/2016.

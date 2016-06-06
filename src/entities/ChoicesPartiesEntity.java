@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Created by Alexandre on 09/05/2016.
@@ -10,6 +11,8 @@ import javax.persistence.*;
 public class ChoicesPartiesEntity {
     private int id;
     private String name;
+    private Collection<UsersEntity> usersEntities;
+    private boolean isResponse;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -62,5 +65,25 @@ public class ChoicesPartiesEntity {
 
     public void setPartiesEntity(PartiesEntity partiesEntity) {
         this.partiesEntity = partiesEntity;
+    }
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "users_choices_parties", joinColumns = @JoinColumn(name = "choice_party_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+    public Collection<UsersEntity> getUsersEntities () {
+        return usersEntities;
+    }
+
+    public void setUsersEntities(Collection<UsersEntity> usersEntities) {
+        this.usersEntities = usersEntities;
+    }
+
+    @Basic
+    @Column(name = "is_response", nullable = false)
+    public boolean getIsResponse() {
+        return isResponse;
+    }
+
+    public void setIsResponse(boolean isResponse) {
+        this.isResponse = isResponse;
     }
 }
