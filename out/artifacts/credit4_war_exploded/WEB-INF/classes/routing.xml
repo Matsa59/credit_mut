@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="default" extends="struts-default">
+        <action name="home">
+            <result>/index.jsp</result>
+        </action>
+    </package>
+
+
+
+    <package name="party" extends="struts-default">
+        <action name="define-response"
+                class="com.credit.actions.party.ShowPartyAction"
+                method="execute">
+            <result name="login" type="redirectAction">sign-in</result>
+            <result name="error" type="redirectAction">index-party</result>
+            <result name="success" type="redirectAction">index-party</result>
+            <result name="input">/WEB-INF/party/show.jsp</result>
+        </action>
+
+        <action name="index-party"
+                class="com.credit.actions.party.IndexPartyAction"
+                method="execute">
+            <result name="success">/WEB-INF/party/index.jsp</result>
+        </action>
+
+        <action name="my-parties"
+                class="com.credit.actions.party.IndexPartyAction"
+                method="myPartiesExecute">
+            <result name="success">/WEB-INF/party/index.jsp</result>
+            <result name="error" type="redirectAction">sign-in</result>
+        </action>
+
+        <action name="create-party"
+                class="com.credit.actions.party.CreatePartyAction"
+                method="execute">
+            <result name="success" type="redirectAction">index-party</result>
+            <result name="input">/WEB-INF/party/new.jsp</result>
+            <result name="error" type="redirectAction">sign-in</result>
+        </action>
+
+        <action name="bet"
+                class="com.credit.actions.party.RegisterBetAction"
+                method="execute">
+            <result name="login" type="redirectAction">sign-in</result>
+            <result name="error" type="redirectAction">home</result>
+            <result name="success" type="redirectAction">home</result>
+        </action>
+    </package>
+
+
+    <package name="tournament" extends="struts-default">
+        <action name="index-tournament"
+                class="com.credit.actions.tournaments.IndexTournamentAction"
+                method="execute">
+            <result name="success">/WEB-INF/tournament/index.jsp</result>
+        </action>
+
+        <action name="my-tournaments"
+                class="com.credit.actions.tournaments.IndexTournamentAction"
+                method="myTournamentsExecute"
+                >
+            <result name="error" type="redirectAction">sign-in</result>
+            <result name="success">/WEB-INF/tournament/index.jsp</result>
+        </action>
+
+        <action name="show-tournament"
+                class="com.credit.actions.tournaments.ShowTournamentAction"
+                method="execute">
+            <result name="success">/WEB-INF/tournament/show.jsp</result>
+            <result name="error" type="redirectAction">index-tournament</result>
+        </action>
+
+        <action name="create-tournament"
+                class="com.credit.actions.tournaments.CreateTournamentAction"
+                method="execute">
+            <result name="error" type="redirectAction">sign-in</result>
+            <result name="success" type="redirectAction">index-tournament</result>
+            <result name="input">/WEB-INF/tournament/new.jsp</result>
+        </action>
+    </package>
+
+
+
+    <package name="user" extends="struts-default">
+        <action name="sign-up"
+                class="com.credit.actions.user.RegisterUserAction"
+                method="execute">
+            <result name="input">/WEB-INF/account/register.jsp</result>
+            <result name="success">/index.jsp</result>
+        </action>
+
+        <action name="sign-in"
+                class="com.credit.actions.user.LoginUserAction"
+                method="execute">
+            <result name="input">/WEB-INF/account/login.jsp</result>
+            <result name="success">/index.jsp</result>
+        </action>
+
+        <action name="sign-out"
+                class="com.credit.actions.user.LoginUserAction"
+                method="remove">
+            <result name="success">/index.jsp</result>
+        </action>
+    </package>
+
+
+
+    <package name="group" extends="struts-default">
+        <action name="join-group"
+                class="com.credit.actions.group.JoinGroupAction"
+                method="execute">
+            <result name="login" type="redirectAction">sign-in</result>
+            <result name="error" type="redirectAction">home</result>
+            <result name="success" type="redirectAction">index-group</result>
+        </action>
+
+        <action name="invite-group"
+                class="com.credit.actions.group.InviteGroupAction"
+                method="execute">
+            <result name="error" type="redirectAction">index-group</result>
+            <result name="success" type="redirectAction">index-group</result>
+            <result name="login" type="redirectAction">sign-in</result>
+        </action>
+
+        <action name="create-group"
+                class="com.credit.actions.group.CreateGroupAction"
+                method="execute">
+            <result name="error" type="redirectAction">sign-in</result>
+            <result name="input">/WEB-INF/group/new.jsp</result>
+            <result name="success" type="redirectAction">my-groups</result>
+        </action>
+
+        <action name="my-groups"
+                class="com.credit.actions.group.IndexGroupAction"
+                method="myGroupsExecute">
+            <result name="login" type="redirectAction">sign-in</result>
+            <result name="success">/WEB-INF/group/my-index.jsp</result>
+        </action>
+
+        <action name="index-group"
+                class="com.credit.actions.group.IndexGroupAction"
+                method="execute">
+            <result name="success">/WEB-INF/group/index.jsp</result>
+        </action>
+    </package>
+</struts>

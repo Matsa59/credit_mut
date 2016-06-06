@@ -1,0 +1,62 @@
+h2 {
+    color: white;
+}
+
+.content {
+    padding: 10px;
+}
+
+input[type=checkbox].list, input[type=radio].list, .list {
+    margin: 0 0 10px 60px;
+}
+
+.party, .tournament {
+    color: white;
+    background-color: #292929;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    border-color: #363636;
+}
+
+.party h3, .party p, .tournament h3, .tournament p{
+    padding: 20px;
+    margin: 0;
+}
+
+.party ul {
+    padding: 20px 40px;
+}
+
+.party hr, .tournament hr {
+    margin: 0;
+    padding: 0;
+}
+
+.tournament {
+    height: 200px;
+    overflow: scroll;
+}
+
+.tournament-new {
+    color: white;
+    padding-top: 0;
+    background-image: url(../images/tournament.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.party-new {
+    color: white;
+    padding-top: 0;
+    background-image: url(../images/party.gif);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.group-new {
+    color: white;
+    padding-top: 0;
+    background-image: url(../images/group.gif);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
